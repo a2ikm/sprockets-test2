@@ -1,0 +1,19 @@
+script: 'bundle exec rake -t test'
+language: ruby
+
+before_install:
+  - "ruby -e 'exit RUBY_VERSION.to_f >= 2.3' && gem up --system || (gem i rubygems-update -v '<3' && update_rubygems)"
+  - gem up bundler
+
+# rvm:
+#   - 2.6.6
+# gemfile:
+#   - gemfiles/sprockets_40.gemfile
+#   - gemfiles/sprockets_37.gemfile
+
+matrix:
+  include:
+    - rvm: 2.6.6
+      gemfile: gemfiles/sprockets_40.gemfile
+    - rvm: 2.6.6
+      gemfile: gemfiles/sprockets_37.gemfile
